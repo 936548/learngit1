@@ -96,9 +96,9 @@
 ## 29.0 re.comple 的作用 是将正则表达式编译成一个对象， 加快速度， 并且重复使用
 
 ## 30.0 
-print(type((1,)))
-print(type((1)))
-print(type(("1")))
+# print(type((1,)))
+# print(type((1)))
+# print(type(("1")))
 
 
 
