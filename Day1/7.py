@@ -42,6 +42,163 @@
 # print(res)
 
 ## 72、对list排序foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4],使用lambda函数从小到大排序
-foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]
-a = sorted(foo)
-print(a)
+# foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]
+# a = sorted(foo)
+# print(a)
+
+## 73.0  使用lambda函数对list排序foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]，输出结果为[0,2,4,8,8,9,-2,-4,-4,-5,-20]，正数从小到大，负数从大到小】（传两个条件，x<0和abs(x)）
+# ls = [-5,8,0,4,9,-4,-20,-2,8,2,-4]
+# ls1 = sorted(ls, key = lambda x: x <0)
+# ls2 = sorted(ls,  key = lambda  x : (x<0,abs(x)))
+
+# print(ls1)
+# print(ls2)
+
+## 74.0 列表嵌套字典的排序，分别根据年龄和姓名排序
+# foo = [{"name":"zs","age":19},{"name":"ll","age":54},{"name":"wa","age":17},{"name":"df","age":23}]
+
+# ls1 = sorted(foo, key = lambda x: x["name"])
+# print(ls1)
+
+# ls2 = sorted(foo, key= lambda x:x["age"],reverse=True)
+# print(ls2)
+
+## 75.0 列表嵌套元组，分别按字母和数字排序
+
+## 76.0  列表嵌套排序 年龄数字相同  添加参数  Eg: foo =["as",12],["qw",12]  a =sorted(foo, key = lambda x : (x[1],x[0]))
+
+## 77.0 根据键对字典排序  zip 函数
+
+# dic = {"name":"zs","sex":"man", "city":"bj"}
+
+# foo = zip(dic.keys(),dic.values()) ## 字典转换列表嵌套元组
+# print(foo)
+# foo = [i for i in foo]
+# print(foo)
+# b = sorted(foo,key=lambda  x: x[0]) ##字典嵌套元组排序
+# new_dic = {i[0]:i[1] for i in b} ##字典推导式构造新字典
+# print(new_dic)
+
+## 78.0  根据键对字典排序  dic.items 和 zip(dic.keys(), dic.values()) 都是为了构造列表嵌套字典的结构 方便后面用sorted() 构造排序规则
+
+# dic = {"name":"zs","sex":"man", "city":"bj"}
+# foo = dic.items() ## 字典转换成
+# b =sorted(dic.items(),key=lambda  x: x[0] )
+
+## 79.0 列表推导式 字典推导式 生成器
+
+# import random
+# # ls = [i for i in range(10)]
+# # ls1 = (i for i in range(10))
+# ls2 = {k:random.randint(4,9) for k in ["a","b","c","d","e"]}
+# # print(ls)
+# # print(ls1)
+# print(ls2)
+
+## 80.0 根据字符串长度排序  lambda x : len(x)
+
+## 81.0 举例说明SQL 注入和解决办法  当以字符串格式化书写方式的时候 乳沟用户输入的有 +SQL 语句 后面的SQL 语句会执行 比如例子中的SQLz注入会删除数据库的demo
+
+# input_name = "zs"
+# sql = 'selct * from demo where name = "%s"' % input_name
+# print("正常查询", sql)
+
+# input_name = "zs;drop database demo"
+# sql = 'selct * from demo where name = "%s"' % input_name
+# print("sql 注入会删除数据库demo", sql)
+# 解决方式 通过传递参数的方式解决sql 注入
+# params = [input_name]
+# count = cls.execute('select * from goods where name = %s', params)
+
+## 82.0 s="info:xiaoZhang 33 shandong",用正则切分字符串输出['info', 'xiaoZhang', '33', 'shandong']
+# import re
+# s="info:xiaoZhang 33 shandong"
+# res = re.split(r":| ",s)
+# print(res)
+
+## 83.0 正则匹配以 163.com 结尾的邮箱
+# import re
+# email_list = ["1gdt@163.com","2@163.comhe","3.@qq.com"]
+# for email in email_list:
+#     ret = re.match("[\w]{4,20}@163\.com$",email)
+#     if ret:
+#         print("1",(email,ret.group()))
+#     else:
+#         print("2",email)
+
+## 84.0递归求和 1+..+ 10
+# def get_sum(num):
+#     if num >=1:
+#         res= num +get_sum(num-1)
+#     else:
+#         res =0
+
+#     return res
+# rs =get_sum(10)
+# print(rs)
+
+## 85.0 python 字典 和 Json 字符串相互转换方法
+## json.dumps() 字典转换 Json 字符串  json.loads() json 转字典
+# import json
+
+# dic = {"name":"zs"}
+# rs1 = json.dumps(dic)
+# print(rs1, type(rs1))
+
+# rs2 = json.loads(rs1)
+# print(rs2,type(rs2))
+
+## 86.0 myisam 和 InnoDB 的区别
+## InnoDB 支持事务 MySAM 不支持 事务一种高级的处理方式 在一些列增删改查中之哟啊那个出错还可以回滚还原 Mylsam 是个查询以及插入为主的应用 InnoDB 适合频繁修改以及涉及安全性较高的应用 InnoDB 支持外键 MYLasm 不支持
+## 对于自增长的字段 innoDB 中必须包含只有该字段的索引 但是在MYlSAM 表中可以和其他字段建立联合索引 清空整个表 InnnoDB 是一行一行的删除 效率低下  MyLSAM 会重新建表
+
+## 87.0 统计字符串出现次数
+ 
+# str1 = "1 2 3 4 5 3 4 3"
+# rs = str1.count("3")
+# print(rs)
+
+## 88.0 字符串转换大小写 str.upper()  str.lower()
+
+## 89.0 去除空格  
+# str = "hello world ha ha"
+# rs1 = str.replace(" ","")
+# print(rs1)
+
+# list = str.split(" ")
+# re2 ="".join(list)
+# print(re2)
+
+## 90.0 正则匹配不是以4和7结尾的手机号 re.match(1\d{9}[0-3,5-6,8-9])
+
+## 91.0 简述python 引用计数机制  python 垃圾回收主要以引用计数为主 标记清除和分代清除为辅的机制 当有1个变量保存了对象的引用时候 这个对象的引用计数就会增加1 当使用del 删除变量
+## 指向的对象 如果该对象的引用计数不是1 比如是3 那么这个时候就会把该引用的计数减1 变成2 。。。
+
+## 92.0 int("1.4") 报错 int(1.4) 输出1
+
+## 93.0 PEP8 编码规范  顶级定义之间空两行 函数或者类  方法/类 与第一个方法之间 空一行 三引号进行注释Pycharm/eclopse 4 个空格 缩进
+
+## 94.0 正则表达式匹配第一个url re.findall() / re.search()
+
+## 95.0 正则匹配中文  re.compile(r'[\u4e00-\u9fa5]')
+
+## 96.0 简述乐观锁和悲锁 拿数据认为别人会更改 /别人不会更改
+
+## 97.0 r r+ rb rb+ 的区别和联系
+
+## 98.0 Linux 命令重定向 > 和 >> Linux 允许命令将执行结果重定向到一个文件将本应显示在终端上的内容 输出/追加到指定文件中
+## > 表示输出 会覆盖文件原有的内容 >> 表示追加 会将内容追加到已有文件的末尾
+
+## 99.0 正则匹配<html></h1>www.itcast.cn</h1></html>  re.match(r"<(\w*)><\w*>.*?</\2></\1>)
+
+## 100.0 python  传参数是值传递还是地址传递 python 中是地址(引用)传递 对于不可变类型 变量不能修改 运算不会影响变量自身 对于可变类型函数运算会更改传入的参数变量
+
+
+
+
+
+
+
+
+
+
